@@ -22,9 +22,10 @@ Then add these string to .repo/manifests/remove.xml
 Then add these projects to .repo/local_manifests/roomservice.xml (If you don't have it, you can add them to .repo/manifest.xml): 
 
 ```xml
-<project name="mauronofrio/android_device_oneplus_guacamole_TWRP" path="device/oneplus/guacamole" remote="github" revision="android-9.0" />
-<project name="mauronofrio/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-9.0" />
+<project name="ScoutTeemo/android_device_oneplus_guacamole_TWRP" path="device/oneplus/guacamole" remote="github" revision="android-9.0" />
+<project name="ScoutTeemo/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-9.0" />
 <project name="android_external_busybox" path="external/busybox" remote="TeamWin" revision="android-9.0" />
+<project name="TeamWin/external_magisk-prebuilt" path="external/magisk-prebuilt" remote="github"  revision="master" />
 ```
 
 Now you can sync your source:
@@ -37,11 +38,16 @@ To auotomatic make the twrp installer, you need to import this commit in the bui
 
 
 To make all works you need to modify the buildinfo.sh in build/tools
+```
 echo "ro.build.version.release=$PLATFORM_VERSION"
 echo "ro.build.version.security_patch=$PLATFORM_SECURITY_PATCH"
+```
+
 to
+```
 echo "ro.build.version.release_orig=$PLATFORM_VERSION"
 echo "ro.build.version.security_patch_orig=$PLATFORM_SECURITY_PATCH"
+```
 
 And you need to increase the PLATFORM_VERSION to 16.1.0 in build/core/version_defaults.mk to override Google's anti-rollback features (This actually i don't know if is always needed)
 
